@@ -6,7 +6,7 @@
 const UNIT = "(nghìn|ngàn|k|triệu|tr|tỷ|tỉ|%|phần\\s+trăm)";
 const PATTERN = new RegExp(
   [
-    "(?<date>\\b\\d{1,2}[/-]\\d{1,2}(?:[/-]\\d{2,4})?\\b)",
+    "(?<date>\\b\\d{1,2}[/-]\\d{1,2}(?:[/-]\\d{2,4})?\\b|\\b\\d{1,2}\\s+tháng\\s+\\d{1,2}(?:(?:\\s+năm|,)\\s+\\d{4})?(?![\\d]))",
     "(?<time>\\b\\d{1,2}(?::\\d{2}|h\\d{2}|h(?![\\p{L}\\d])|\\s+giờ(?:\\s+\\d{1,2}(?:\\s+phút)?)?))",
     `(?<num>\\d+(?:[.,]\\d+)*)(?:\\s*${UNIT}(?![\\p{L}\\d]))?`,
   ].join("|"),
@@ -33,7 +33,7 @@ export function extractNumbers(text) {
     const g = m.groups;
     let keys;
     if (g.date) {
-      keys = ["d:" + g.date.split(/[/-]/).map(Number).join("/")];
+      keys = ["d:" + g.date.match(/\d+/g).map(Number).join("/")];
     } else if (g.time) {
       const [h, min = 0] = g.time.match(/\d+/g).map(Number);
       keys = [`t:${h}:${String(min).padStart(2, "0")}`];

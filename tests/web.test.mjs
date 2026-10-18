@@ -27,6 +27,8 @@ test("money words scale the number", () => {
 
 test("dates, times and percentages", () => {
   assert.deepEqual(keys("ngày 20/01/2026"), [["d:20/1/2026"]]);
+  assert.deepEqual(keys("ngày 20 tháng 1"), [["d:20/1"]]);
+  assert.deepEqual(keys("24 tháng 1 năm 2026"), [["d:24/1/2026"]]);
   assert.deepEqual(keys("lúc 9h"), [["t:9:00"]]);
   assert.deepEqual(keys("lúc 9:30"), [["t:9:30"]]);
   assert.deepEqual(keys("10 giờ 15 phút"), [["t:10:15"]]);
