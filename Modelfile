@@ -1,0 +1,19 @@
+# Ollama: download vi-humanizer-e2b-Q6_K.gguf next to this file, then
+#   ollama create vi-humanizer -f Modelfile && ollama run vi-humanizer
+# The template is Gemma 4's chat format with thinking off, written out so Ollama does not substitute its own.
+FROM ./vi-humanizer-e2b-Q6_K.gguf
+TEMPLATE """{{- if .System }}<|turn>system
+{{ .System }}<turn|>
+{{ end }}
+{{- range .Messages }}
+{{- if eq .Role "user" }}<|turn>user
+{{ .Content }}<turn|>
+{{ else if eq .Role "assistant" }}<|turn>model
+{{ .Content }}<turn|>
+{{ end }}
+{{- end }}<|turn>model
+"""
+PARAMETER stop "<turn|>"
+PARAMETER temperature 1.0
+PARAMETER top_p 0.95
+PARAMETER top_k 64
