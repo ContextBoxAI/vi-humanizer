@@ -1,3 +1,5 @@
+![vi-humanizer](assets/vi-humanizer-hero.png)
+
 # vi-humanizer local app
 
 A web app for the vi-humanizer model. **Viết lại** (Rewrite) takes a draft an AI wrote and rewrites it so it reads
@@ -36,26 +38,3 @@ static files, all on one port. The GGUF carries its own chat template (thinking 
 - **LM Studio:** load the GGUF, start its server with CORS on, then open `?api=http://127.0.0.1:1234/v1&model=<id>`.
 
 The browser calls these servers directly, so they must allow cross-origin requests from the page's address.
-
-## Numbers check
-
-`web/js/numbers.js` reads 1.000.000 and 1,000,000 as the same amount, 15 triệu / 15tr / 15.000.000 as the same money,
-20/1 and 20/01 as the same date, 9h / 9:00 / 9 giờ as the same time. Where a number could mean two things (1.500 is
-1500 in Vietnamese and 1.5 in English), either reading counts as a match. Numbers written in words ("hai mươi") are not
-checked. Lost numbers are underlined in the draft.
-
-## Files
-
-| Path | What it is |
-|---|---|
-| `web/index.html`, `web/style.css` | the page, in ContextBox colours, light and dark |
-| `web/js/main.js` | rewrite and chat views, settings |
-| `web/js/api.js` | streaming client for `/v1/chat/completions` |
-| `web/js/diff.js` | word-level diff between draft and rewrite |
-| `web/js/numbers.js` | the numbers check |
-| `web/js/md.js` | small Markdown renderer for chat answers |
-| `web/js/i18n.js` | Vietnamese and English interface strings, tone prompts, sample draft |
-| `tests/web.test.mjs` | `node --test tests/web.test.mjs` |
-| `install.sh`, `install.ps1` | one-command setup |
-| `Modelfile` | Ollama import with the exact Gemma 4 chat format |
-| `chat_template_nothink.jinja` | the chat template written into the released GGUF and weights: Gemma 4's, with thinking always off |
