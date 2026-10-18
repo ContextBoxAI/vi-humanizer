@@ -99,6 +99,7 @@ main { flex: 1; display: flex; padding: 8px 20px 20px; min-height: 0; }
 .tones .label { color: var(--faint); margin-right: 4px; text-transform: uppercase; }
 .chip { border: 1px solid var(--ghost); background: transparent; padding: 5px 14px; border-radius: 999px; font-size: 13px; color: var(--muted); }
 .chip:hover { background: var(--surface-high); }
+.tones .hint { font-size: 12px; color: var(--faint); margin-left: 6px; }
 .chip[aria-checked="true"] { background: var(--ink); color: var(--surface); border-color: transparent; }
 
 /* two panels */

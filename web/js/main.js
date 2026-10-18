@@ -110,6 +110,13 @@ function renderTones() {
     b.addEventListener("click", () => { state.tone = tone.id; store.set("tone", tone.id); renderTones(); });
     box.append(b);
   }
+  // Natural drifts casual on formal text (it adds "nha", turns "Kính gửi" into "Chào"), so point business text to Formal.
+  if (state.tone === "natural") {
+    const hint = document.createElement("span");
+    hint.className = "hint";
+    hint.textContent = t("naturalHint");
+    box.append(hint);
+  }
 }
 
 function updateCounts() {

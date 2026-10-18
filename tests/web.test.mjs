@@ -74,3 +74,15 @@ test("markdown escapes HTML and renders lists, nesting and arithmetic", () => {
   assert.match(html, /10\.000 × 10% = 1\.000/);
   assert.equal(markdown("giá $5 hoặc $10"), "<p>giá $5 hoặc $10</p>");
 });
+
+test("every file the page loads carries the same version tag", async () => {
+  const { readFileSync, readdirSync } = await import("node:fs");
+  const html = readFileSync(new URL("../web/index.html", import.meta.url), "utf8");
+  const tags = new Set([...html.matchAll(/\?v=([\w.-]+)/g)].map((m) => m[1]));
+  assert.equal(tags.size, 1, `mixed version tags: ${[...tags]}`);
+  const map = JSON.parse(html.match(/<script type="importmap">([\s\S]*?)<\/script>/)[1]).imports;
+  for (const f of readdirSync(new URL("../web/js/", import.meta.url)).filter((f) => f.endsWith(".js")))
+    assert.ok(map[`./js/${f}`], `js/${f} is missing from the import map, so browsers may serve it stale`);
+  assert.match(html, /js\/main\.js\?v=/);
+  assert.match(html, /style\.css\?v=/);
+});

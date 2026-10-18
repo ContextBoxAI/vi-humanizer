@@ -38,3 +38,9 @@ static files, all on one port. The GGUF carries its own chat template (thinking 
 - **LM Studio:** load the GGUF, start its server with CORS on, then open `?api=http://127.0.0.1:1234/v1&model=<id>`.
 
 The browser calls these servers directly, so they must allow cross-origin requests from the page's address.
+
+## License
+
+The app code is MIT (see `LICENSE`). The model is a derivative of Gemma and is subject to the
+[Gemma Terms of Use](https://ai.google.dev/gemma/terms). The bundled fonts (Inter, Space Grotesk, JetBrains Mono) are
+under the SIL Open Font License, in `web/fonts/`.

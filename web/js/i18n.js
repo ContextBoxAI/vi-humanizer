@@ -2,7 +2,7 @@
 
 export const TONES = [
   { id: "natural", vi: "Tự nhiên", en: "Natural",
-    prompt: "Viết lại đoạn sau cho tự nhiên, như người Việt thật viết, giữ nguyên thông tin:\n\n{t}" },
+    prompt: "Viết lại văn bản trong ngoặc kép cho tự nhiên, như người Việt thật viết. Giữ nguyên thông tin, cách xưng hô và mức trang trọng của bản gốc. Chỉ trả về văn bản đã viết lại, không thêm lời dẫn.\n\n\"\"\"\n{t}\n\"\"\"" },
   { id: "chat", vi: "Nhắn tin", en: "Texting",
     prompt: "Viết lại đoạn sau theo giọng nhắn tin thân mật, giữ nguyên thông tin:\n\n{t}" },
   { id: "formal", vi: "Trang trọng", en: "Formal",
@@ -40,7 +40,7 @@ const S = {
     rewriteEmpty: "Bản viết lại hiện ở đây. Mọi con số, ngày, giờ được đối chiếu lại với bản nháp.",
     paste: "Dán", clear: "Xóa", sample: "Thử đoạn mẫu", edit: "Sửa bản nháp", cut: "bỏ đi", added: "thêm vào",
     go: "Viết lại", stop: "Dừng", regenerate: "Viết lại lần nữa", copy: "Sao chép", copied: "Đã chép",
-    showChanges: "Hiện thay đổi", tone: "Giọng",
+    showChanges: "Hiện thay đổi", tone: "Giọng", naturalHint: "Thư, thông báo gửi khách hàng: chọn Trang trọng",
     numbers: "Số liệu", numbersNone: "Không có số liệu", numbersLost: "mất", numbersNew: "mới",
     statusReady: "Sẵn sàng", statusOff: "Chưa kết nối", statusChecking: "Đang kết nối",
     chatEmpty: "Hỏi gì cũng được: giải thích, tư vấn, viết email, viết bài đăng.",
@@ -61,7 +61,7 @@ const S = {
     rewriteEmpty: "The rewrite shows up here. Every number, date and time is checked against the draft.",
     paste: "Paste", clear: "Clear", sample: "Try a sample", edit: "Edit draft", cut: "cut", added: "added",
     go: "Rewrite", stop: "Stop", regenerate: "Regenerate", copy: "Copy", copied: "Copied",
-    showChanges: "Show changes", tone: "Tone",
+    showChanges: "Show changes", tone: "Tone", naturalHint: "Letters and notices to customers: pick Formal",
     numbers: "Numbers", numbersNone: "No numbers", numbersLost: "lost", numbersNew: "new",
     statusReady: "Ready", statusOff: "Not connected", statusChecking: "Connecting",
     chatEmpty: "Ask anything: explanations, advice, emails, posts. Answers come in natural Vietnamese.",
